@@ -1,9 +1,19 @@
 import React from 'react';
 import classes from './Car.module.css';
 import withClass from '../hoc/withClass';
+import PropTypes from 'prop-types';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 class Car extends React.Component {
+    constructor(props) {
+        super(props);
+        this.inputRef = React.createRef();
+    }
+    componentDidMount() {
+        if (this.props.index === 0) {
+            this.inputRef.current.focus();
+        }
+    }
     render() {
         console.log('classes', classes);
         console.log('Car render');
@@ -30,6 +40,7 @@ class Car extends React.Component {
                 </p>
                 {this.props.children}
                 <input
+                    ref={this.inputRef}
                     className={inputClasses.join(' ')}
                     type="text"
                     onChange={this.props.onChangeName}
@@ -40,5 +51,13 @@ class Car extends React.Component {
         );
     }
 }
+
+Car.propTypes = {
+    name: PropTypes.string.isRequired,
+    year: PropTypes.number,
+    index: PropTypes.number,
+    onChangeName: PropTypes.func,
+    onDelete: PropTypes.func,
+};
 
 export default withClass(Car, classes.Car);
