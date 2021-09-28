@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
-import Auth from './containers/Auth.js/Auth';
+import Auth from './containers/Auth/Auth';
 import Quiz from './containers/Quiz/Quiz';
 import QuizCreator from './containers/QuizCreator/QuizCreator';
 import QuizList from './containers/QuizList/QuizList';
