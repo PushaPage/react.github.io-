@@ -74,7 +74,10 @@ class Auth extends Component {
             console.log(response.data);
         } catch (error) {}
     };
-    submitHandler = () => {};
+
+    submitHandler = event => {
+        event.preventDefault();
+    };
 
     validateControl(value, validation) {
         if (!validation) {
@@ -124,7 +127,7 @@ class Auth extends Component {
     renderInputs() {
         return Object.keys(this.state.formControls).map((controlName, index) => {
             const control = this.state.formControls[controlName];
-            console.log(controlName + index);
+            // console.log(controlName + index);
             return (
                 <Input
                     key={controlName + index}
