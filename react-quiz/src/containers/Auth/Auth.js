@@ -3,6 +3,7 @@ import Button from '../../components/UI/Button/Button';
 import Input from '../../components/UI/Input/Input';
 import classes from './Auth.module.css';
 import is from 'is_js';
+import axios from 'axios';
 
 // function validateEmail(email) {
 //     const re =
@@ -42,8 +43,37 @@ class Auth extends Component {
         },
     };
 
-    loginHandler = () => {};
-    registerHandler = () => {};
+    loginHandler = async () => {
+        try {
+            const authData = {
+                email: this.state.formControls.email.value,
+                password: this.state.formControls.password.value,
+                returnSecureToken: true,
+            };
+            const response = await axios.post(
+                'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBN--bHeSDOqWcn3KMGtg0lSOjPLW7k_x4',
+                authData
+            );
+
+            console.log(response.data);
+        } catch (error) {}
+    };
+    registerHandler = async () => {
+        try {
+            const authData = {
+                email: this.state.formControls.email.value,
+                password: this.state.formControls.password.value,
+                returnSecureToken: true,
+            };
+            const response = await axios.post(
+                'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBN--bHeSDOqWcn3KMGtg0lSOjPLW7k_x4',
+                authData,
+                { 'Content-Type': 'application/json' }
+            );
+
+            console.log(response.data);
+        } catch (error) {}
+    };
     submitHandler = () => {};
 
     validateControl(value, validation) {
